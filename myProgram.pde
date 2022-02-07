@@ -1,3 +1,4 @@
+/* @pjs preload="music.png","Listedit2.txt","ArialMT.vlw","MVBoli.vlw","Gabriola.vlw","InkFree.vlw","SegoeScript.vlw"; */
 IntDict words;
 ArrayList<PFont> textstyle;
 PFont a;
