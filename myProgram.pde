@@ -52,7 +52,7 @@ void setup() {
   //frame rate
   frameRate(0.5);
   
-  println(words);
+  //println(words);
 }
 
 void draw() {
