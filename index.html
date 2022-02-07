@@ -11,7 +11,7 @@
   </head>
   <body>
 	  <script type="text/processing">
-	  	@pjs preload="ArialMT.vlw","MVBoli.vlw","Gabriola.vlw","InkFree.vlw", "SegoeScript.vlw" ;
+	  	/*@pjs preload="ArialMT.vlw","MVBoli.vlw","Gabriola.vlw","InkFree.vlw", "SegoeScript.vlw";*/
 	  	String[] currentlist;
 		String[] titles = {"\"Survivor\" by Destiny’s Child (2001)","\"Part of Me\" by Katy Perry (2012)","\"Respect\" by Aretha Franklin (1967)","\"Not Ready to Make Nice\" by The Chicks (2006)","\"I Will Survive\" by Gloria Gaynor (1978)"};
 		ArrayList<String[]> all_list;
@@ -69,8 +69,8 @@
 		int style = int(random(0,5));
 		int fontsize = int(map(currentlist[i].length(),0,20,15,70));
 		fill(random(255),random(255),random(255));
-		textSize(random(fontsize-2,fontsize+2));
-		textFont(textstyle.get(style),fontsize);
+		textSize(random(fontsize-5,fontsize+5));
+		//textFont(textstyle.get(style),fontsize);
 		float x_loc = random(width/30,width-width/10); 
 		float y_loc = random(height/20, height - height/20);
 		while(x_loc>width/3 && x_loc<2*width/3 && y_loc>1.5*height/5 && y_loc<3.5*height/5){
