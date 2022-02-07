@@ -12,7 +12,7 @@ int[] values;
 
 
 void setup() {
-  fullScreen();
+  size(600,600);
   words = new IntDict();
   
   //read file and create dic
