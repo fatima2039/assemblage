@@ -50,7 +50,7 @@ void setup() {
   //m.resize(width,height);
   
   //frame rate
-  frameRate(0.5);
+  //frameRate(0.5);
   
   //println(words);
 }
@@ -60,9 +60,9 @@ void draw() {
   //image(m,0,0);
   for (int i=0; i<keys.length;  i++){
     //int style = int(random(0,5));
-    int fontsize = int(map(values[i],0,max(values),15,100));
+    int fontsize = int(map(values[i],0,max(values),10,50));
     if ((values[i]==1) && (keys[i].length() > 3)) {
-      fontsize = int(map(keys[i].length(),0,15,10,50));
+      fontsize = int(map(keys[i].length(),0,15,5,25));
     }
     fill(random(255),random(255),random(255));
     //textFont(textstyle.get(style),fontsize);
