@@ -4,98 +4,81 @@
     <script type="text/javascript" src="processing.js"></script>
 		<style type="text/css">
 			#theCanvas {
-				width: 100%;
-				height: 100%;
+				width: 100vw;
+				height: 100vh;
 			}
 		</style>
   </head>
   <body>
 	  <script type="text/processing">
-		IntDict current;
-		String[] currentlist;
-		String[] keys;
-		int[] values;
+	  	@pjs preload="ArialMT.vlw","MVBoli.vlw","Gabriola.vlw","InkFree.vlw", "SegoeScript.vlw" ;
+	  	String[] currentlist;
+		String[] titles = {"\"Survivor\" by Destiny’s Child (2001)","\"Part of Me\" by Katy Perry (2012)","\"Respect\" by Aretha Franklin (1967)","\"Not Ready to Make Nice\" by The Chicks (2006)","\"I Will Survive\" by Gloria Gaynor (1978)"};
+		ArrayList<String[]> all_list;
 
-		//ArrayList<PFont> textstyle;
-		//PFont a;
-		//PFont b;
-		//PFont c;
-		//PFont d;
-		//PFont e;
+		ArrayList<PFont> textstyle;
+		PFont a;
+		PFont b;
+		PFont c;
+		PFont d;
+		PFont e;
 		//PImage m;
 
-
-		void create_dic(String[] list) {
-		  for (int i = 0 ; i < list.length; i++) {
-		    if (current.hasKey(list[i]) == true){
-		      current.increment(list[i]);
-		    }
-		    else{
-		      current.set(list[i],1);
-		    }
-		  }
-		}
-
 		void setup() {
-		  fullScreen();
-		  current = new IntDict();
-		  String[] l1 = {"youre","life","much","better","thought","weak","without","stronger","thought","broke","without","richer","thought","sad","without","laugh","harder","thought","wouldnt","grow","without","wiser","though","helpless","without","smarter","thought","stressed","without","chillin","thought","wouldnt","sell","without","sold","nine","million","survivor","gon","give","gon","stop","gon","work","harder","survivor","gon","make","survive","keep","survivin","survivor","gon","give","gon","stop","gon","work","harder","survivor","gon","make","survive","keep","survivin","thought","couldnt","breathe","without","inhaling","thought","couldnt","see","without","perfect","vision","thought","couldnt","last","without","lastin","thought","would","die","without","livin","thought","would","fail","without","top","thought","would","wont","stop","thought","would","self","destruct","still","even","years","come","still","gon","survivor","gon","give","yea","gon","stop","gon","work","harder","yea","survivor","gon","make","yea","survive","keep","survivin","yea","survivor","gon","give","yea","gon","stop","gon","work","harder","gon","work","harder","yea","survivor","gon","make","survive","survive","yea","keep","survivin","wishin","best","best","pray","blessed","whoo","whoo","bring","much","success","stress","lots","happiness","better","gon","blast","radio","better","gon","lie","family","better","gon","hate","magazines","better","gon","compromise","christianity","better","know","gon","diss","internet","cause","mama","taught","better","survivor","gon","give","gon","stop","yea","gon","work","harder","survivor","gon","make","survive","keep","survivin","survivor","gon","give","gon","stop","gon","work","harder","survivor","yea","gon","make","survive","keep","survivin","oh","oh","oh","oh","oh","ohh","ohh","ohh","ohh","ohh","darkness","sadness","still","comes","happiness","surround","positive","things","ill","gain","prosperity","survivor","gon","give","gon","stop","gon","work","harder","survivor","gon","make","survive","keep","survivin","survivor","gon","give","yea","gon","stop","dont","stop","gon","work","harder","survivor","gon","make","survive","keep","survivin","yea","survivor","gon","give","gon","stop","gon","work","harder","survivor","gon","make","survive","keep","survivin","survivor","gon","give","gon","stop","gon","work","harder","im","survivor","im","gon","make","survive","keep","survivin","survive","fine","survive","sexy","survive","bootylicious"};
-		  String[] l2 = {"days","like","want","drive","away","pack","bags","watch","shadow","fade","chewed","spit","like","poison","mouth","took","light","drained","look","part","youre","never","gon","ever","take","away","part","youre","never","gon","ever","take","away","throw","sticks","stones","throw","bombs","blows","youre","gon","break","soul","part","youre","never","gon","ever","take","away","wan","throw","phone","away","find","really","ripped","love","cheap","always","tearing","seams","fell","deep","let","look","part","youre","never","gon","ever","take","away","part","youre","never","gon","ever","take","away","throw","sticks","stones","throw","bombs","blows","youre","gon","break","soul","part","youre","never","gon","ever","take","away","look","sparkling","firework","dancing","flame","wont","never","put","glowin","whoa","keep","diamond","ring","dont","mean","nothing","anyway","fact","keep","everything","yeah","yeah","except","part","youre","never","gon","ever","take","away","part","youre","never","gon","ever","take","away","throw","sticks","stones","throw","bombs","blows","youre","gon","break","soul","part","youre","never","gon","ever","take","away","part","away","part","throw","sticks","stones","throw","bombs","blows","youre","gon","break","soul","part","youre","never","gon","ever","take","away"};
-		  String[] l3 = {"want","baby","got","need","know","got","askin","little","respect","come","home","little","bit","hey","baby","little","bit","get","home","little","bit","mister","little","bit","aint","gon","wrong","youre","gone","aint","gon","wrong","cause","dont","wan","askin","little","respect","come","home","little","bit","baby","little","bit","get","home","little","bit","yeah","little","bit","give","money","askin","return","honey","give","profits","get","home","yeah","baby","get","home","little","bit","yeah","little","bit","ooh","kisses","sweeter","honey","guess","money","want","give","get","home","yeah","baby","whip","respect","little","bit","get","home","little","bit","e","e","find","means","e","e","take","care","tcb","sock","sock","sock","sock","little","respect","sock","sock","sock","sock","whoa","babe","little","bit","little","respect","little","bit","get","tired","little","bit","keep","tryin","little","bit","youre","runnin","foolin","little","bit","aint","lyin","little","bit","respect","come","home","might","walk","respect","little","bit","find","im","gone","little","bit"};
-		  String[] l4 = {"forgive","sounds","good","forget","sure","could","say","time","heals","everything","still","waiting","doubt","theres","nothing","left","figure","ive","paid","price","ill","keep","paying","ready","make","nice","ready","back","still","mad","hell","dont","time","round","round","round","late","make","right","probably","wouldnt","could","cause","mad","hell","cant","bring","think","know","said","cant","get","turned","whole","world","around","kind","like","made","bed","sleep","like","baby","regrets","dont","mind","sayin","sad","sad","story","mother","teach","daughter","ought","hate","perfect","stranger","world","words","said","send","somebody","edge","theyd","write","letter","sayin","better","shut","sing","life","ready","make","nice","ready","back","still","mad","hell","dont","time","round","round","round","late","make","right","probably","wouldnt","could","cause","mad","hell","cant","bring","think","ready","back","still","mad","hell","dont","time","round","round","round","late","make","right","probably","wouldnt","could","cause","mad","hell","cant","bring","think","think","forgive","sounds","good","forget","sure","could","say","time","heals","everything","still","waiting"};
-		  String[] l5 = {"first","afraid","petrified","kept","thinking","could","never","live","without","side","spent","many","nights","thinking","wrong","grew","strong","learned","get","along","youre","back","outer","space","walked","find","sad","look","upon","face","changed","stupid","lock","made","leave","key","known","one","second","youd","back","bother","walk","door","turn","around","cause","youre","welcome","anymore","werent","one","tried","hurt","goodbye","think","crumble","think","lay","die","survive","long","know","love","know","ill","stay","alive","ive","got","life","live","ive","got","love","give","ill","survive","survive","hey","hey","took","strength","fall","apart","kept","trying","hard","mend","pieces","broken","heart","spent","many","nights","feeling","sorry","used","cry","hold","head","high","see","somebody","new","chained","little","person","still","love","felt","like","dropping","expect","free","saving","loving","someone","whos","loving","walk","door","turn","around","cause","youre","welcome","anymore","werent","one","tried","break","goodbye","think","crumble","think","lay","die","survive","long","know","love","know","ill","stay","alive","ive","got","life","live","ive","got","love","give","ill","survive","survive","walk","door","turn","around","cause","youre","welcome","anymore","werent","one","tried","break","goodbye","think","crumble","think","lay","die","survive","long","know","love","know","ill","stay","alive","ive","got","life","live","ive","got","love","give","ill","survive","survive","survive","first","afraid","petrified","kept","thinking","could","never","live","without","side","spent","many","nights","thinking","wrong","grew","strong","learned","get","along","youre","back","outer","space","walked","find","sad","look","upon","face","changed","stupid","lock","made","leave","key","known","one","second","youd","back","bother","go","walk","door","turn","around","cause","youre","welcome","anymore","werent","one","tried","hurt","goodbye","think","crumble","think","lay","die","survive","long","know","love","know","ill","stay","alive","ive","got","life","live","ive","got","love","give","ill","survive","survive","survive","took","strength","fall","apart","kept","trying","hard","mend","pieces","broken","heart","spent","many","nights","feeling","sorry","used","cry","hold","head","high","see","somebody","new","chained","little","person","still","love","felt","like","dropping","expect","free","saving","loving","someone","whos","loving","go","go","walk","door","turn","around","cause","youre","welcome","anymore","werent","one","tried","hurt","goodbye","think","crumble","think","lay","die","survive","long","know","love","know","ill","stay","alive","ive","got","life","live","ive","got","love","give","ill","survive","survive","survive","go","go","walk","door","turn","around","cause","youre","welcome","anymore","werent","one","tried","hurt","goodbye","think","crumble","think","lay","die","survive","long","know","love","know","ill","stay","alive","ive","got","life","live","ive","got","much","love","give","ill","survive","survive","survive","go","go","walk","door","turn","around","cause","youre","welcome","anymore","werent","one","tried","break","goodbye","crumble","yes","lay","die","survive","long","know","love","know","ill","stay","alive","ive","got","life","live","ive","got","much","love","give","ill","survive","yes","ill","survive","yeah","ill","survive"};
-		  currentlist = l1;
-		  create_dic(l1);
+		size(1600,900);
+		String[] l1 = {"youre","life","much","better","thought","weak","without","stronger","broke","richer","sad","laugh","harder","wouldnt","grow","wiser","though","helpless","smarter","stressed","chillin","sell","sold","nine","million","survivor","gon","give","stop","work","make","survive","keep","survivin","couldnt","breathe","inhaling","see","perfect","vision","last","lastin","would","die","livin","fail","top","wont","self","destruct","still","even","years","come","yea","wishin","best","pray","blessed","whoo","bring","success","stress","lots","happiness","blast","radio","lie","family","hate","magazines","compromise","christianity","know","diss","internet","cause","mama","taught","oh","ohh","darkness","sadness","comes","surround","positive","things","ill","gain","prosperity","dont","im","fine","sexy","bootylicious"};
+		String[] l2 = {"days","like","want","drive","away","pack","bags","watch","shadow","fade","chewed","spit","poison","mouth","took","light","drained","look","part","youre","never","gon","ever","take","throw","sticks","stones","bombs","blows","break","soul","wan","phone","find","really","ripped","love","cheap","always","tearing","seams","fell","deep","let","sparkling","firework","dancing","flame","wont","put","glowin","whoa","keep","diamond","ring","dont","mean","nothing","anyway","fact","everything","yeah","except"};
+		String[] l3 = {"want","baby","got","need","know","askin","little","respect","come","home","bit","hey","get","mister","aint","gon","wrong","youre","gone","cause","dont","wan","yeah","give","money","return","honey","profits","ooh","kisses","sweeter","guess","whip","e","find","means","take","care","tcb","sock","whoa","babe","tired","keep","tryin","runnin","foolin","lyin","might","walk","im"};
+		String[] l4 = {"forgive","sounds","good","forget","sure","could","say","time","heals","everything","still","waiting","doubt","theres","nothing","left","figure","ive","paid","price","ill","keep","paying","ready","make","nice","back","mad","hell","dont","round","late","right","probably","wouldnt","cause","cant","bring","think","know","said","get","turned","whole","world","around","kind","like","made","bed","sleep","baby","regrets","mind","sayin","sad","story","mother","teach","daughter","ought","hate","perfect","stranger","words","send","somebody","edge","theyd","write","letter","better","shut","sing","life"};
+		String[] l5 = {"first","afraid","petrified","kept","thinking","could","never","live","without","side","spent","many","nights","wrong","grew","strong","learned","get","along","youre","back","outer","space","walked","find","sad","look","upon","face","changed","stupid","lock","made","leave","key","known","one","second","youd","bother","walk","door","turn","around","cause","welcome","anymore","werent","tried","hurt","goodbye","think","crumble","lay","die","survive","long","know","love","ill","stay","alive","ive","got","life","give","hey","took","strength","fall","apart","trying","hard","mend","pieces","broken","heart","feeling","sorry","used","cry","hold","head","high","see","somebody","new","chained","little","person","still","felt","like","dropping","expect","free","saving","loving","someone","whos","break","go","much","yes","yeah"};
+		all_list = new ArrayList<String[]>();
+		all_list.add(l1);
+		all_list.add(l2);
+		all_list.add(l3);
+		all_list.add(l4);
+		all_list.add(l5);
+		currentlist = all_list.get(0);
 
 
-		  //font
-		  //a = loadFont("ArialMT.vlw");
-		  //b = loadFont("MVBoli.vlw");
-		  //c = loadFont("Gabriola.vlw");
-		  //d = loadFont("InkFree.vlw");
-		  //e = loadFont("SegoeScript.vlw");
 
-		  //array
-		  //textstyle = new ArrayList<PFont>();
-		  //textstyle.add(a);
-		  //textstyle.add(b);
-		  //textstyle.add(c);
-		  //textstyle.add(d);
-		  //textstyle.add(e);
 
-		  //keys and values
-		  keys = current.keyArray();
-		  values = current.valueArray();
+		//font
+		a = loadFont("ArialMT.vlw");
+		b = loadFont("MVBoli.vlw");
+		c = loadFont("Gabriola.vlw");
+		d = loadFont("InkFree.vlw");
+		e = loadFont("SegoeScript.vlw");
 
-		  //images
-		  //m = loadImage("music.png");
-		  //m.resize(width,height);
+		//array
+		textstyle = new ArrayList<PFont>();
+		textstyle.add(a);
+		textstyle.add(b);
+		textstyle.add(c);
+		textstyle.add(d);
+		textstyle.add(e);
 
-		  //frame rate
-		  //frameRate(0.5);
+		//frame rate
+		frameRate(5);
 
 		}
 
 		void draw() {
-		  background(0);
-		  //image(m,0,0);
-		  for (int i=0; i<keys.length;  i++){
-		    //int style = int(random(0,5));
-		    int fontsize = int(map(values[i],0,max(values),15,100));
-		    if ((values[i]==1) && (keys[i].length() > 3)) {
-		      fontsize = int(map(keys[i].length(),0,15,10,50));
-		    }
-		    fill(random(255),random(255),random(255));
-		    textSize(random(fontsize-2,fontsize+2));
-		    //textFont(textstyle.get(style),fontsize);
-		    float x_loc = random(width/30,width-width/10); 
-		    float y_loc = random(height/20, height - height/20);
-		    while(x_loc>width/3 && x_loc<2*width/3 && y_loc>1.5*height/5 && y_loc<3.5*height/5){
-		      x_loc = random(width/30,width-width/10); 
-		      y_loc = random(height/20, height - height/20);
-		    }
-		    text(keys[i],x_loc,y_loc);
-		  }
+		background(0);
+
+		for (int i=0; i<currentlist.length;  i++){
+		int style = int(random(0,5));
+		int fontsize = int(map(currentlist[i].length(),0,20,15,70));
+		fill(random(255),random(255),random(255));
+		textSize(random(fontsize-2,fontsize+2));
+		textFont(textstyle.get(style),fontsize);
+		float x_loc = random(width/30,width-width/10); 
+		float y_loc = random(height/20, height - height/20);
+		while(x_loc>width/3 && x_loc<2*width/3 && y_loc>1.5*height/5 && y_loc<3.5*height/5){
+		  x_loc = random(width/30,width-width/10); 
+		  y_loc = random(height/20, height - height/20);
+		}
+		text(currentlist[i],x_loc,y_loc);
+		}
 
 		}
 	  </script>
